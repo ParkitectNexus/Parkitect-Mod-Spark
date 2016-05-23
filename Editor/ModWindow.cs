@@ -127,6 +127,7 @@ public class ModWindow : EditorWindow
         GUILayout.Label(ModManager.mod.name, "LODLevelNotifyText");
         GUILayout.EndHorizontal();
 
+        Event e = Event.current;
         GUILayout.Label("Mod setup", "PreToolbar");
         ModGUI();
         GUILayout.Space(10);
@@ -161,6 +162,15 @@ public class ModWindow : EditorWindow
 
                 if (GUILayout.Button(PO.inGameName))
                 {
+                    if (e.button == 1)
+                    {
+                        if (EditorUtility.DisplayDialog("Are you sure to delete this item?", "Are you sure to delete this item? Name: " + PO.gameObject.name, "Ok", "Cancel"))
+                        {
+                            ModManager.ParkitectObjects.Remove(PO);
+                            ModManager.asset = null;
+                        }
+                        return;
+                    }
 
                     GUI.FocusControl("");
                     if (EditorWindow.GetWindow(typeof(FlatRideAnimator)))

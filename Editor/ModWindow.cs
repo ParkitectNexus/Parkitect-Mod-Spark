@@ -173,7 +173,8 @@ public class ModWindow : EditorWindow
                     }
 
                     GUI.FocusControl("");
-                    if (EditorWindow.GetWindow(typeof(FlatRideAnimator)))
+
+                    if (PO.type == ParkitectObject.ObjType.FlatRide && EditorWindow.GetWindow(typeof(FlatRideAnimator)))
                     {
                         EditorWindow.GetWindow(typeof(FlatRideAnimator)).Repaint();
                     }

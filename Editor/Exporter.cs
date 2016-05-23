@@ -51,7 +51,7 @@ public static class Exporter {
                     if (P.GO == null)
                         error = "The Product '" + P.Name + "' from shop '" + PO.inGameName + "' doesn't have a GameObject as a model.";
                     else if (!AllNoneGO.Contains(P.GO))
-                        error = "The Product '" + P.Name + "' from shop '" + PO.inGameName + "' does have a GameObject that isn't in the mod as none object. Add it to the mod and make sure it is set to none. Otherwise the model of the product won't be in the bundle with all the objects.";
+                        error = "The Product '" + P.Name + "' from shop '" + PO.inGameName + "' does have a GameObject that isn't in the mod with the type None. Add it to the mod and make sure the Type is set to None. Otherwise the model of the product won't be in the bundle with all the objects.";
             else if (PO.type == ParkitectObject.ObjType.PathStyle && (!PO.gameObject.GetComponent< MeshRenderer >() || !PO.gameObject.GetComponent<MeshRenderer>().material))
                 error = "The Path Style '" + PO.inGameName + "' has not been setup correctly, make sure that you are creating the path by clicking the Create button after you asigned a texture. ";
         }

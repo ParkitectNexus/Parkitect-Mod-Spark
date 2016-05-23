@@ -26,7 +26,7 @@ public static class Exporter {
             if (!GONames.Contains(ModManager.ParkitectObjects[i].gameObject.name))
                 GONames.Add(ModManager.ParkitectObjects[i].gameObject.name);
             else
-                error = "You have two or more GameObjects that are using the same name. Make sure you are changing the GameObjects name and not the in game name! This causes problems when loading from the Assetbundle and from savegames";
+                error = "You have two or more GameObjects that are using the name: '" + ModManager.ParkitectObjects[i].gameObject.name +  "'. Make sure to change the GameObjects name and not the in game name! This causes problems when loading from the Assetbundle and from savegames";
 
         }
 

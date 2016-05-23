@@ -137,8 +137,8 @@ public class BoundingBoxWindow
             {
                 box.bounds.min = handleModifyValue(box.bounds.min, PO.gameObject.transform.InverseTransformPoint(Handles.PositionHandle(PO.gameObject.transform.TransformPoint(box.bounds.min), Quaternion.LookRotation(Vector3.left, Vector3.down))));
                 box.bounds.max = handleModifyValue(box.bounds.max, PO.gameObject.transform.InverseTransformPoint(Handles.PositionHandle(PO.gameObject.transform.TransformPoint(box.bounds.max), Quaternion.LookRotation(Vector3.forward))));
-                Handles.Label(box.bounds.min, box.bounds.min.ToString("F2"));
-                Handles.Label(box.bounds.max, box.bounds.max.ToString("F2"));
+                Handles.Label(PO.gameObject.transform.position + box.bounds.min, box.bounds.min.ToString("F2"));
+                Handles.Label(PO.gameObject.transform.position +  box.bounds.max, box.bounds.max.ToString("F2"));
             }
         }
     }

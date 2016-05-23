@@ -5,7 +5,7 @@ using UnityEditor;
 public class BoundingBoxWindow
 {
 
-    private bool enableEditing = false;
+    public bool enableEditing = false;
     private bool snap = false;
     private Vector2 scrollPos2;
     public BoundingBox selected;

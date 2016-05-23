@@ -178,6 +178,11 @@ public class ModWindow : EditorWindow
                     {
                         EditorWindow.GetWindow(typeof(FlatRideAnimator)).Repaint();
                     }
+
+                    //Disable editing
+                    enableEditing = false;
+                    BBW.enableEditing = false;
+
                     if (ModManager.asset == PO)
                     {
                         ModManager.asset = null;

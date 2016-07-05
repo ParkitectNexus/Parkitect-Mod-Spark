@@ -12,6 +12,7 @@ using System.Xml;
 public class ModWindow : EditorWindow
 {
     public static string version = "PRE APLHA v1.0";
+    public GUISkin guiSkin;
     public ParkitectModManager ModManager;
     private bool enableEditing = false;
     BoundingBoxWindow BBW = new BoundingBoxWindow();
@@ -58,6 +59,7 @@ public class ModWindow : EditorWindow
     {
         logo = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/Parkitect_ModSpark/Textures/MSlogo.png", typeof(Texture2D));
         titleContent.image = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/Parkitect_ModSpark/Textures/icon.png", typeof(Texture2D));
+        //guiSkin = (GUISkin)(AssetDatabase.LoadAssetAtPath("Assets/Parkitect_ModSpark/Editor/GUI/GUISkin_Spark.guiskin", typeof(GUISkin)));
         //UpdateInfo.Check(false);
     }
     void OnSelectionChange()
@@ -71,6 +73,8 @@ public class ModWindow : EditorWindow
     //               \ \ /\ / /| | '_ \ / _` |/ _ \ \ /\ / / | |  _| | | || | 
     //                \ V  V / | | | | | (_| | (_) \ V  V /  | |_| | |_| || | 
     //                 \_/\_/  |_|_| |_|\__,_|\___/ \_/\_/    \____|\___/|___|
+
+ 
     void OnGUI()
     {
         ModManager.ValidateSelected();
@@ -143,7 +147,7 @@ public class ModWindow : EditorWindow
             }
             if (!PO.gameObject)
             {
-                if (GUILayout.Button("##No game object found##"))
+                if (GUILayout.Button("##No game object found##", "minibutton"))
                 {
                     if (EditorUtility.DisplayDialog("Are you sure to delete this item?", "Are you sure to delete this missing GameObject item?  ", "Ok", "Cancel"))
                     {
@@ -160,7 +164,7 @@ public class ModWindow : EditorWindow
             else
             {
 
-                if (GUILayout.Button(PO.inGameName))
+                if (GUILayout.Button(PO.inGameName, "minibutton"))
                 {
                     if (e.button == 1)
                     {
@@ -334,7 +338,7 @@ public class ModWindow : EditorWindow
 
             GUILayout.Label("Settings", "PreToolbar");
 
-            ModManager.asset.type = (ParkitectObject.ObjType)EditorGUILayout.EnumPopup("Type: ", ModManager.asset.type);
+            ModManager.asset.type = (ParkitectObject.ObjType)EditorGUILayout.EnumPopup("Type: ", ModManager.asset.type, "MiniPopup");
             if (ModManager.asset.gameObject && ModManager.asset.type != ParkitectObject.ObjType.none)
             {
                 if (ModManager.asset.type == ParkitectObject.ObjType.FlatRide)
@@ -579,6 +583,12 @@ public class ModWindow : EditorWindow
                 }
                 GUILayout.EndHorizontal();
                 return;
+            case ParkitectObject.ObjType.wall:
+                BasicGUI();
+                ModManager.asset.category = EditorGUILayout.TextField("Category: ", ModManager.asset.category);
+                ModManager.asset.heightDelta = EditorGUILayout.FloatField("HeightDelta: ", ModManager.asset.heightDelta);
+                ColorGUI();
+                return;
             case ParkitectObject.ObjType.lamp:
                 BasicGUI();
                 ColorGUI();
@@ -651,7 +661,7 @@ public class ModWindow : EditorWindow
     {
         GUILayout.Label("Mod Name:", EditorStyles.boldLabel);
         ModManager.mod.name = EditorGUILayout.TextField(ModManager.mod.name);
-        GUILayout.Label("Mod Discription:", EditorStyles.boldLabel);
+        GUILayout.Label("Mod Description:", EditorStyles.boldLabel);
         ModManager.mod.discription = EditorGUILayout.TextArea(ModManager.mod.discription);
         GUILayout.BeginHorizontal();
         if (GUILayout.Button("Export XML"))
@@ -672,10 +682,7 @@ public class ModWindow : EditorWindow
             GUI.color = Color.white;
         }
     }
-    void OnLostFocus()
-    {
 
-    }
     void OnFocus()
     {
         if (FindObjectOfType<ParkitectModManager>())
@@ -780,7 +787,11 @@ public class ModWindow : EditorWindow
             Handles.color = Color.white;
             Color fill = Color.white;
             fill.a = 0.1f;
+
+            
             Handles.DrawSolidRectangleWithOutline(new Vector3[] { topLeft, topRight, bottomRight, bottomLeft }, fill, Color.black);
+            Handles.color = Color.red;
+            Handles.DrawDottedLine(bottomRight, bottomLeft, 5f);
             SceneView.RepaintAll();
             if (!enableEditing)
             {

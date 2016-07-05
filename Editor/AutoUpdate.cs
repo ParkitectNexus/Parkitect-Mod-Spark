@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
 using UnityEditor;
-using NUnit.Framework;
-using System.Collections;
 using System.Net;
 using System.IO;
 using System.Collections.Generic;
@@ -10,7 +8,7 @@ using System;
 
 public static class UpdateInfo
 {
-    static public int CurVerion = 1;
+    static public int CurVerion = 2;
     static public int CurNewVersion;
     static public string NewSite;
 
@@ -29,6 +27,7 @@ public static class UpdateInfo
                 Contents.Reverse();
                 int NewVersion = int.Parse(Contents[1]);
                 NewSite = Contents[0];
+
                 if (NewVersion > CurVerion)
                 {
                     try

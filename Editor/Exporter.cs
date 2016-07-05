@@ -218,6 +218,9 @@ public static class Exporter {
                 E.Add(new XElement("heightDelta", PO.heightDelta));
                 E.Add(new XElement("gridSubdivision", PO.gridSubdivision));
                 break;
+            case ParkitectObject.ObjType.wall:
+                E.Add(new XElement("category", PO.category));
+                break;
             case ParkitectObject.ObjType.trashbin:
                 break;
             case ParkitectObject.ObjType.seating:

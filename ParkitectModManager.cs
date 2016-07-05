@@ -51,6 +51,7 @@ public class ParkitectObject
         none,
         _,
         deco,
+        wall,
         trashbin,
         seating,
         lamp,

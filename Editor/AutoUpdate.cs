@@ -8,7 +8,7 @@ using System;
 
 public static class UpdateInfo
 {
-    static public int CurVerion = 2;
+    static public int CurVerion = 201;
     static public int CurNewVersion;
     static public string NewSite;
 

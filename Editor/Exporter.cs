@@ -109,7 +109,7 @@ public static class Exporter {
         List<AssetBundleBuild> builds = new List<AssetBundleBuild>();
         builds.Add(AB);
         AssetDatabase.CreateFolder(path, "assetbundle");
-        BuildPipeline.BuildAssetBundles(path + "/assetbundle", builds.ToArray());
+		BuildPipeline.BuildAssetBundles(path + "/assetbundle", builds.ToArray(),BuildAssetBundleOptions.None,BuildTarget.StandaloneWindows64);
         AssetDatabase.LoadMainAssetAtPath(path);
         Selection.activeObject = AssetDatabase.LoadAssetAtPath(path, typeof(UnityEngine.Object));
         EditorGUIUtility.PingObject(Selection.activeObject);

@@ -11,7 +11,7 @@ using System.Xml;
 
 public class ModWindow : EditorWindow
 {
-    public static string version = "PRE APLHA v2.0";
+    public static string version = "PRE APLHA v2.0.1";
     public GUISkin guiSkin;
     public ParkitectModManager ModManager;
     private bool enableEditing = false;

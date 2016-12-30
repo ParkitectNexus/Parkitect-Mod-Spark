@@ -1,5 +1,7 @@
 ﻿using System;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using UnityEngine;
 [ExecuteInEditMode]
 [Serializable]
@@ -49,11 +51,13 @@ public class Mover : motor
     public override void DrawGUI()
     {
 
+#if UNITY_EDITOR
         Identifier = EditorGUILayout.TextField("Name ", Identifier);
         axis = (Transform)EditorGUILayout.ObjectField("axis", axis, typeof(Transform), true);
         toPosition = EditorGUILayout.Vector3Field("Move To", toPosition);
         duration = EditorGUILayout.FloatField("Time", duration);
         base.DrawGUI();
+#endif
 
     }
     public override void Enter()

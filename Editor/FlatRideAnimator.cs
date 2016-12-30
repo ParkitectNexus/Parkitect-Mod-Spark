@@ -302,7 +302,7 @@ public class FlatRideAnimator : EditorWindow
             EditorGUILayout.EndHorizontal();
             EditorGUILayout.EndScrollView();
             EditorGUILayout.EndHorizontal();
-            GUILayout.Label("© H-POPS - " + ModWindow.version, "PreToolbar");
+            GUILayout.Label("© H-POPS - " + UpdateInfo.VersionName, "PreToolbar");
         }
     }
     public enum MoveDirection

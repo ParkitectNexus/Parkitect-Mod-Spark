@@ -1,4 +1,8 @@
-﻿using UnityEditor;
+﻿
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 using System;
 using UnityEngine;
 using System.Linq;
@@ -23,6 +27,7 @@ public class ApplyRotation : RideAnimationEvent
     
     public override void DrawGUI()
     {
+#if UNITY_EDITOR
 
         if (rotator)
         {
@@ -40,6 +45,7 @@ public class ApplyRotation : RideAnimationEvent
             GUI.color = Color.white;
         }
         base.DrawGUI();
+#endif
     }
 
     public override void Enter()

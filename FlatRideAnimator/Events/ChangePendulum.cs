@@ -1,11 +1,13 @@
-﻿using UnityEditor;
+﻿#if UNITY_EDITOR
+using UnityEditor;
+#endif
 using System;
 using UnityEngine;
 using System.Linq;
 
 [ExecuteInEditMode]
 [Serializable]
-public class ChangePendulum : RideAnimationEvent 
+public class ChangePendulum : RideAnimationEvent
 {
     [SerializeField]
     public PendulumRotator rotator;
@@ -14,7 +16,6 @@ public class ChangePendulum : RideAnimationEvent
     public float Friction = 20f;
     public bool Pendulum;
     private float startPendulumPosition;
-    private float windUpAngleTarget = 100f;
     public override string EventName
     {
         get
@@ -22,10 +23,10 @@ public class ChangePendulum : RideAnimationEvent
             return "ChangePendulum";
         }
     }
-    
+
     public override void DrawGUI()
     {
-
+#if UNITY_EDITOR
         if (rotator)
         {
             ColorIdentifier = rotator.ColorIdentifier;
@@ -43,6 +44,7 @@ public class ChangePendulum : RideAnimationEvent
             }
             GUI.color = Color.white;
         }
+#endif
         base.DrawGUI();
     }
 
@@ -56,7 +58,7 @@ public class ChangePendulum : RideAnimationEvent
     {
         if (rotator)
         {
-            
+
         }
 
     }

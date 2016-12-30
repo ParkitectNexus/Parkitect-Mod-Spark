@@ -1,4 +1,6 @@
-﻿using UnityEditor;
+﻿#if UNITY_EDITOR
+using UnityEditor;
+#endif
 using System;
 using UnityEngine;
 using System.Linq;
@@ -26,7 +28,7 @@ public class SpinRotater : RideAnimationEvent
     }
     public override void DrawGUI()
     {
-
+        #if UNITY_EDITOR
         if (rotator)
         {
             ColorIdentifier = rotator.ColorIdentifier;
@@ -47,6 +49,7 @@ public class SpinRotater : RideAnimationEvent
             }
             GUI.color = Color.white;
         }
+#endif
         base.DrawGUI();
     }
 

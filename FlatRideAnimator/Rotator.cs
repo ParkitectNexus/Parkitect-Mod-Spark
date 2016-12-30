@@ -1,6 +1,7 @@
 ﻿using System;
-using System.Runtime.CompilerServices;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using UnityEngine;
 
 [ExecuteInEditMode]
@@ -60,13 +61,14 @@ public class Rotator : motor
     }
     public override void DrawGUI()
     {
-
+#if UNITY_EDITOR
         Identifier = EditorGUILayout.TextField("Name ", Identifier);
         axis = (Transform)EditorGUILayout.ObjectField("axis", axis, typeof(Transform),true);
         maxSpeed = EditorGUILayout.FloatField("maxSpeed", maxSpeed);
         accelerationSpeed = EditorGUILayout.FloatField("accelerationSpeed", accelerationSpeed);
         rotationAxis = EditorGUILayout.Vector3Field("rotationAxis", rotationAxis);
         base.DrawGUI();
+#endif
     }
     public override void Enter()
     {

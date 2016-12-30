@@ -2,7 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 
 [Serializable]
 public class Shop : ObjectType
@@ -14,11 +16,11 @@ public class Shop : ObjectType
     public override void DrawGUI()
     {
 
+#if UNITY_EDITOR
         foreach (Product p in products)
         {
             try
             {
-
                 EditorUtility.SetDirty(p);
             }
             catch 
@@ -82,6 +84,8 @@ public class Shop : ObjectType
             selected.DrawGUI();
 
         }
+
+#endif
     }
 
     public override List<object> Export()
@@ -109,14 +113,18 @@ public class Product : MonoBehaviour
 
     public virtual void DrawGUI()
     {
+#if UNITY_EDITOR
         Name = EditorGUILayout.TextField("Product Name", Name);
         GO = (GameObject)EditorGUILayout.ObjectField("Game Object ", GO, typeof(GameObject), true);
         price = EditorGUILayout.FloatField("Price ", price);
         Hand = (hand)EditorGUILayout.EnumPopup("Hand ", Hand);
+#endif
     }
 
     public void DrawIngredientsGUI()
     {
+
+#if UNITY_EDITOR
         Event e = Event.current;
         EditorGUILayout.LabelField("Ingredients:", EditorStyles.boldLabel);
         EditorGUILayout.BeginHorizontal(GUILayout.Height(300));
@@ -195,6 +203,7 @@ public class Product : MonoBehaviour
         }
         EditorGUILayout.EndVertical();
         EditorGUILayout.EndVertical();
+#endif
     }
 }
 

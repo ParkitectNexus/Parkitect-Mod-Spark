@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using System;
 [Serializable]
 [ExecuteInEditMode]
@@ -17,13 +19,15 @@ public class Wait : RideAnimationEvent
     }
     public override void DrawGUI()
     {
-       
+
+#if UNITY_EDITOR
         seconds = EditorGUILayout.FloatField("Seconds", seconds);
         if (isPlaying)
         {
             GUILayout.Label("Time" + (timeLimit - Time.realtimeSinceStartup));
         }
         base.DrawGUI();
+#endif
     }
 
     public override void Enter()

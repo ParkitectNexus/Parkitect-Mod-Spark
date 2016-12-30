@@ -11,7 +11,6 @@ using System.Xml;
 
 public class ModWindow : EditorWindow
 {
-    public static string version = "PRE APLHA v2.0.1";
     public GUISkin guiSkin;
     public ParkitectModManager ModManager;
     private bool enableEditing = false;
@@ -362,7 +361,7 @@ public class ModWindow : EditorWindow
         GUILayout.Space(50);
         EditorGUILayout.EndScrollView();
 
-        GUILayout.Label("© H-POPS - " + version, "PreToolbar");
+        GUILayout.Label("© H-POPS - " + UpdateInfo.VersionName, "PreToolbar");
 
     }
     void WaypointGUI()
@@ -748,13 +747,14 @@ public class ModWindow : EditorWindow
     }
     void OnSceneGUI(SceneView sceneView)
     {
-        BBW.OnSceneGUI(ModManager.asset, ModManager);
-        if (ModManager.asset == null || !ModManager.asset.gameObject)
+        if (ModManager && (ModManager.asset == null || !ModManager.asset.gameObject))
         {
 
             return;
 
         }
+        if (BBW != null)
+            BBW.OnSceneGUI(ModManager.asset, ModManager);
         else
         {
 

@@ -1,5 +1,7 @@
 ﻿using System;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using UnityEngine;
 [ExecuteInEditMode]
 [Serializable]
@@ -32,12 +34,14 @@ public class RotateBetween : motor
     }
     public override void DrawGUI()
     {
-
+#if UNITY_EDITOR
         Identifier = EditorGUILayout.TextField("Name ", Identifier);
         axis = (Transform)EditorGUILayout.ObjectField("axis", axis, typeof(Transform), true);
         rotationAxis = EditorGUILayout.Vector3Field("Rotate To", rotationAxis);
         duration = EditorGUILayout.FloatField("Time", duration);
+#endif
         base.DrawGUI();
+
     }
     public override void Reset()
     {
@@ -51,7 +55,7 @@ public class RotateBetween : motor
     public override void Enter()
     {
         originalRotationValue = axis.localRotation;
-        Initialize(axis, axis.localRotation,  Quaternion.Euler(axis.localEulerAngles +  rotationAxis), duration);
+        Initialize(axis, axis.localRotation, Quaternion.Euler(axis.localEulerAngles + rotationAxis), duration);
     }
     public void Initialize(Transform axis, Quaternion fromRotation, Quaternion toRotation, float duration)
     {

@@ -3,7 +3,9 @@ using System.Collections;
 using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using System.Linq;
 
 public class ParkitectModManager : MonoBehaviour
@@ -315,7 +317,9 @@ public class motor : ScriptableObject
     }
     public virtual void DrawGUI()
     {
+#if UNITY_EDITOR
         ColorIdentifier = EditorGUILayout.ColorField("Color ", ColorIdentifier);
+#endif
     }
     public virtual void Enter()
     {

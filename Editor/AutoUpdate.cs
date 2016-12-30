@@ -8,9 +8,11 @@ using System;
 
 public static class UpdateInfo
 {
-    static public int CurVerion = 201;
+    static public int CurVerion = 003;
+    static public string VersionName = "v0.0.3";
     static public int CurNewVersion;
     static public string NewSite;
+    static public string NewDisplayName;
 
     [MenuItem("Parkitect/Check Update", false, 54)]
     public static void Check(bool showDialog)
@@ -25,6 +27,7 @@ public static class UpdateInfo
                 string content = reader.ReadToEnd();
                 List<string> Contents = content.Split(',').ToList<string>();
                 Contents.Reverse();
+                NewDisplayName = Contents[2];
                 int NewVersion = int.Parse(Contents[1]);
                 NewSite = Contents[0];
 
@@ -34,7 +37,7 @@ public static class UpdateInfo
                     {
                         PlayerPrefs.SetInt("LastUpdated", DateTime.Now.Day);
                         CurNewVersion = NewVersion;
-                        Debug.Log("There is a new Parkitect Mod Tool version aviable for download! :" + NewVersion + "  Download: " + NewSite);
+                        Debug.Log("There is a new Parkitect Mod Tool version aviable for download! :" + NewDisplayName + "  Download: " + NewSite);
                         if (!showDialog)
                             return;
                         AutoUpdate window = (AutoUpdate)EditorWindow.GetWindow(typeof(AutoUpdate));
@@ -46,7 +49,7 @@ public static class UpdateInfo
                 else
                 {
 
-                    Debug.Log("Your'e parkitect mod setup is up to date!  CurVer: " + CurVerion + "   NewVer: " + NewVersion);
+                    Debug.Log("Your'e parkitect mod setup is up to date!  Current Version: " + VersionName + "   Latest Version: " + NewVersion);
                     PlayerPrefs.SetInt("LastUpdated", DateTime.Now.Day);
                 }
 
@@ -87,10 +90,10 @@ class AutoUpdate : EditorWindow
     }
     void OnGUI()
     {
-        EditorGUILayout.LabelField("There is a new Parkitect Mod Tool version aviable for download!", EditorStyles.wordWrappedLabel);
+        EditorGUILayout.LabelField("There is a new Parkitect Mod Spark version aviable for download!", EditorStyles.wordWrappedLabel);
         GUILayout.Space(5);
-        EditorGUILayout.LabelField("Your Verion: " + UpdateInfo.CurVerion, EditorStyles.wordWrappedLabel);
-        EditorGUILayout.LabelField("New Version: " + UpdateInfo.CurNewVersion, EditorStyles.boldLabel);
+        EditorGUILayout.LabelField("Your Verion: " + UpdateInfo.VersionName, EditorStyles.wordWrappedLabel);
+        EditorGUILayout.LabelField("New Version: " + UpdateInfo.NewDisplayName, EditorStyles.boldLabel);
 
         GUILayout.FlexibleSpace();
         GUILayout.BeginHorizontal();

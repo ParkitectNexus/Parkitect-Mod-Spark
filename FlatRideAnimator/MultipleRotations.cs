@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using System.Collections.Generic;
 using System;
 
@@ -15,6 +16,7 @@ public class MultipleRotations : motor {
     public override void DrawGUI()
     {
 
+#if UNITY_EDITOR
         Identifier = EditorGUILayout.TextField("Name ", Identifier);
         mainAxis = (Transform)EditorGUILayout.ObjectField("MainAxis", mainAxis, typeof(Transform), true);
         Transform Axis = (Transform)EditorGUILayout.ObjectField("Add axis", null, typeof(Transform), true);
@@ -49,6 +51,7 @@ public class MultipleRotations : motor {
                 }
             }
         }
+#endif
         base.DrawGUI();
     }
     public override void Reset()

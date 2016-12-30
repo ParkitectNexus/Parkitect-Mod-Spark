@@ -1,5 +1,7 @@
-﻿using System;
+﻿
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using UnityEngine;
 
 public class PendulumRotator : Rotator
@@ -15,10 +17,12 @@ public class PendulumRotator : Rotator
 
     public override void DrawGUI()
     {
+#if UNITY_EDITOR
         armLength = EditorGUILayout.FloatField("armLength ", armLength);
         gravity = EditorGUILayout.FloatField("gravity", gravity);
         angularFriction = EditorGUILayout.FloatField("angularFriction", angularFriction);
         pendulum = EditorGUILayout.Toggle("pendulum", pendulum);
+#endif
         base.DrawGUI();
     }
     public override string EventName
